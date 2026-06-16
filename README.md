@@ -10,7 +10,6 @@ The platform uses a MySQL database to securely handle user authentication, produ
 
 1. **Start your local server environment** (e.g., XAMPP, MAMP, or Laragon).
 2. **Access phpMyAdmin** (typically at `http://localhost/phpmyadmin`).
-3. **Create a new database** named `breathflow`.
 4. **Import the schema:**
    - Navigate to the **Import** tab inside phpMyAdmin.
    - Choose the `breathflow/schema.sql` file from this project and click **Go/Import**.
