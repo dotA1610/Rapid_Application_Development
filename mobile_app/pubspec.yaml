@@ -1,0 +1,28 @@
+name: arc_nebu_pen
+description: ARC NEBU-PEN Mobile Companion App.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Backend API Integration
+  http: ^1.2.0
+  
+  # Secure Local Storage (for JWT / Session handling)
+  flutter_secure_storage: ^9.0.0
+  
+  # Native Device Capabilities
+  camera: ^0.10.5+9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true

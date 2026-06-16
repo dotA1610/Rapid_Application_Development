@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARC NEBU-PEN — Breathe Better. Feel Better.</title>
+    <meta name="description" content="ARC NEBU-PEN is a modern breathing wellness device designed to support relaxation, focus, and everyday balance through cool, unheated air therapy." />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts — Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        teal: {
+                            400: '#4DD9A8',
+                            500: '#2ECB80',   /* Primary brand teal */
+                            600: '#25B870',
+                            700: '#1A9E5C',
+                        },
+                        ocean: {
+                            950: '#040D0F',   /* Deepest background */
+                            900: '#071419',
+                            800: '#0C2028',
+                            700: '#112B35',
+                            600: '#163644',
+                        },
+                        charcoal: {
+                            900: '#111827',
+                            800: '#1C2A30',
+                            700: '#253540',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #040D0F 0%, #071419 30%, #0C2028 60%, #163644 100%)',
+                        'badge-gradient': 'linear-gradient(180deg, rgba(14,30,40,0.85) 0%, rgba(6,16,22,0.95) 100%)',
+                    },
+                    boxShadow: {
+                        'teal-glow': '0 0 24px rgba(46, 203, 128, 0.25)',
+                        'card-dark': '0 4px 24px rgba(0, 0, 0, 0.45)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* Smooth scrolling & base */
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Hero video overlay */
+        .hero-video-overlay {
+            background: linear-gradient(
+                135deg,
+                rgba(4, 13, 15, 0.82) 0%,
+                rgba(7, 20, 25, 0.70) 35%,
+                rgba(12, 32, 40, 0.55) 65%,
+                rgba(22, 54, 68, 0.40) 100%
+            );
+        }
+
+        /* Nav link hover teal underline */
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: #2ECB80;
+            transition: width 0.25s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: #2ECB80; }
+
+        /* Teal CTA button pulse */
+        .btn-teal {
+            transition: all 0.25s ease;
+            box-shadow: 0 0 0 0 rgba(46, 203, 128, 0.4);
+        }
+        .btn-teal:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(46, 203, 128, 0.35);
+        }
+        .btn-teal:active { transform: translateY(0); }
+
+        /* Ghost button */
+        .btn-ghost {
+            transition: all 0.25s ease;
+        }
+        .btn-ghost:hover {
+            background: rgba(46, 203, 128, 0.08);
+            border-color: #2ECB80;
+            color: #2ECB80;
+            transform: translateY(-1px);
+        }
+
+        /* Feature badge card */
+        .badge-card {
+            background: linear-gradient(180deg, rgba(14,30,40,0.80) 0%, rgba(6,16,22,0.92) 100%);
+            border: 1px solid rgba(46, 203, 128, 0.12);
+            backdrop-filter: blur(12px);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+        .badge-card:hover {
+            border-color: rgba(46, 203, 128, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Device image floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-10px); }
+        }
+        .device-float { animation: float 5s ease-in-out infinite; }
+
+        /* Fade-in on load */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up           { animation: fadeUp 0.7s ease both; }
+        .fade-up-delay-1   { animation: fadeUp 0.7s 0.15s ease both; }
+        .fade-up-delay-2   { animation: fadeUp 0.7s 0.30s ease both; }
+        .fade-up-delay-3   { animation: fadeUp 0.7s 0.45s ease both; }
+        .fade-up-delay-4   { animation: fadeUp 0.7s 0.60s ease both; }
+    </style>
+</head>
+
+<body class="bg-ocean-950 text-white antialiased overflow-x-hidden">
+
+    <?php require __DIR__ . '/header.php'; ?>
+    <!-- ═══════════════════════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════════════════════ -->
+    <section id="hero"
+             class="relative min-h-screen flex flex-col justify-between overflow-hidden pt-20"
+             style="background: linear-gradient(135deg, #040D0F 0%, #071419 25%, #0C2028 55%, #112B35 80%, #163644 100%);">
+
+        <!-- ── Background Video (placeholder) ─────────────────── -->
+        <!--
+            PRODUCTION: Replace this <div> with a <video> element:
+            <video autoplay muted loop playsinline
+                   class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <source src="assets/videos/ocean-hero.mp4" type="video/mp4" />
+            </video>
+        -->
+        <div id="hero-video-placeholder"
+             class="absolute inset-0 w-full h-full"
+             aria-hidden="true">
+            <!-- Ocean texture simulation using layered radial gradients -->
+            <div class="absolute inset-0"
+                 style="background:
+                    radial-gradient(ellipse 90% 60% at 70% 80%, rgba(22,54,68,0.6) 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 40% at 30% 90%, rgba(46,203,128,0.04) 0%, transparent 50%),
+                    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(12,32,40,0.9) 0%, transparent 70%);"></div>
+            <!-- Subtle animated shimmer lines (wave simulation) -->
+            <div class="absolute bottom-0 left-0 right-0 h-56 opacity-20"
+                 style="background: repeating-linear-gradient(
+                    180deg,
+                    transparent 0px,
+                    transparent 28px,
+                    rgba(46,203,128,0.08) 28px,
+                    rgba(46,203,128,0.08) 29px
+                 );"></div>
+        </div>
+
+        <!-- ── Gradient overlay on video ─────────────────────── -->
+        <div class="hero-video-overlay absolute inset-0" aria-hidden="true"></div>
+
+        <!-- ── Hero content ──────────────────────────────────── -->
+        <div class="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-12 flex-1 flex items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full py-16 lg:py-24">
+
+                <!-- Left: Copy -->
+                <div class="space-y-7">
+                    <!-- Main headline -->
+                    <div class="fade-up">
+                        <h1 class="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight">
+                            <span class="text-white block">Breathe Better.</span>
+                            <span class="block" style="color: #2ECB80;">Feel Better.</span>
+                        </h1>
+                    </div>
+
+                    <!-- Sub-copy -->
+                    <p class="fade-up-delay-1 text-base lg:text-lg text-gray-300 leading-relaxed max-w-md font-light">
+                        ARC NEBU-PEN is a modern breathing wellness device designed to support
+                        relaxation, focus, and everyday balance.
+                    </p>
+
+                    <!-- CTA buttons -->
+                    <div class="fade-up-delay-2 flex flex-wrap gap-4">
+                        <a href="index.php?page=profiles"
+                           id="cta-starter-kit"
+                           class="btn-teal inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+                                  font-semibold text-sm text-ocean-950"
+                           style="background: #2ECB80;">
+                            Get Starter Kit
+                        </a>
+                        <a href="index.php?page=science"
+                           id="cta-learn-more"
+                           class="btn-ghost inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+                                  font-semibold text-sm text-white border border-white/30">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Device image -->
+                <div class="fade-up-delay-3 flex justify-center lg:justify-end">
+                    <div class="relative device-float">
+                        <!--
+                            PRODUCTION: Replace with:
+                            <img src="assets/images/nebupen-hero.png"
+                                 alt="ARC NEBU-PEN breathing wellness device"
+                                 class="w-56 lg:w-72 xl:w-80 h-auto object-contain drop-shadow-2xl"
+                                 width="320" height="480" />
+                        -->
+                        <!-- Device Placeholder -->
+                        <div class="relative w-52 lg:w-64 xl:w-72 mx-auto">
+                            <!-- Glow behind device -->
+                            <div class="absolute inset-0 rounded-full blur-3xl opacity-20"
+                                 style="background: radial-gradient(circle, #2ECB80 0%, transparent 70%);
+                                        transform: scale(1.2);"></div>
+
+                            <!-- Device silhouette placeholder -->
+                            <div class="relative mx-auto rounded-[2.5rem] flex flex-col items-center justify-between py-6 px-4 shadow-2xl"
+                                 style="width: 80px; height: 280px;
+                                        background: linear-gradient(180deg, #2a3a40 0%, #1a2830 40%, #111e24 100%);
+                                        border: 1px solid rgba(46,203,128,0.2);">
+                                <!-- Dome cap -->
+                                <div class="w-10 h-10 rounded-full border border-white/20"
+                                     style="background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(200,230,225,0.1) 100%);
+                                            backdrop-filter: blur(4px);"></div>
+                                <!-- Body bands -->
+                                <div class="w-full space-y-2">
+                                    <div class="h-0.5 w-full bg-white/10 rounded"></div>
+                                    <div class="h-12 w-full rounded-xl"
+                                         style="background: linear-gradient(135deg, #1a4a3a 0%, #0f3028 100%);
+                                                border: 1px solid rgba(46,203,128,0.15);"></div>
+                                    <div class="h-0.5 w-full bg-white/10 rounded"></div>
+                                </div>
+                                <!-- Base -->
+                                <div class="w-12 h-8 rounded-xl"
+                                     style="background: linear-gradient(180deg, #0f2028 0%, #071419 100%);
+                                            border: 1px solid rgba(46,203,128,0.2);"></div>
+                            </div>
+
+                            <!-- ARC label -->
+                            <p class="text-center text-xs text-teal-500/60 mt-4 tracking-[0.2em] uppercase font-medium">
+                                ARC NEBU-PEN
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Feature Badge Bar (bottom of hero) ────────────── -->
+        <div class="relative z-10 w-full"
+             style="background: linear-gradient(180deg, transparent 0%, rgba(4,13,15,0.6) 100%);">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 pb-8 pt-4">
+                <div class="fade-up-delay-4 grid grid-cols-2 lg:grid-cols-4 gap-3">
+
+                    <!-- Badge 1: Unheated Cool Air -->
+                    <div class="badge-card rounded-2xl px-5 py-4 flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+                             style="background: rgba(46,203,128,0.12);">
+                            <!-- Snowflake / cool air icon -->
+                            <svg class="w-5 h-5" style="color: #2ECB80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                      d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-white text-sm font-semibold leading-tight">Unheated</p>
+                            <p class="text-gray-400 text-xs mt-0.5">Cool Air</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 2: Portable Anywhere -->
+                    <div class="badge-card rounded-2xl px-5 py-4 flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+                             style="background: rgba(46,203,128,0.12);">
+                            <!-- Location pin icon -->
+                            <svg class="w-5 h-5" style="color: #2ECB80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-white text-sm font-semibold leading-tight">Portable</p>
+                            <p class="text-gray-400 text-xs mt-0.5">Anywhere</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 3: Replaceable Cartridges -->
+                    <div class="badge-card rounded-2xl px-5 py-4 flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+                             style="background: rgba(46,203,128,0.12);">
+                            <!-- Refresh / cycle icon -->
+                            <svg class="w-5 h-5" style="color: #2ECB80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-white text-sm font-semibold leading-tight">Replaceable</p>
+                            <p class="text-gray-400 text-xs mt-0.5">Cartridges</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge 4: Wellness Everyday -->
+                    <div class="badge-card rounded-2xl px-5 py-4 flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+                             style="background: rgba(46,203,128,0.12);">
+                            <!-- Heart / wellness icon -->
+                            <svg class="w-5 h-5" style="color: #2ECB80;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-white text-sm font-semibold leading-tight">Wellness</p>
+                            <p class="text-gray-400 text-xs mt-0.5">Everyday</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section><!-- /hero -->
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════════ -->
+    <footer class="border-t border-white/5"
+            style="background: linear-gradient(180deg, #071419 0%, #040D0F 100%);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+                <!-- Brand column -->
+                <div class="md:col-span-1 space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-full bg-teal-500 flex items-center justify-center">
+                            <span class="text-ocean-950 font-black text-xs">A</span>
+                        </div>
+                        <span class="font-bold text-base text-white">ARC</span>
+                    </div>
+                    <p class="text-gray-500 text-xs leading-relaxed">
+                        Breathe Better. Feel Better.<br/>
+                        &copy; <?= date('Y') ?> ARC NEBU-PEN. All rights reserved.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white text-xs font-semibold uppercase tracking-widest mb-4">Quick Links</h3>
+                    <ul class="space-y-2.5 text-xs text-gray-400">
+                        <li><a href="index.php?page=home"     class="hover:text-teal-400 transition-colors">Home</a></li>
+                        <li><a href="index.php?page=science"  class="hover:text-teal-400 transition-colors">Science</a></li>
+                        <li><a href="index.php?page=device"   class="hover:text-teal-400 transition-colors">Device</a></li>
+                        <li><a href="index.php?page=profiles" class="hover:text-teal-400 transition-colors">Sensory Profiles</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h3 class="text-white text-xs font-semibold uppercase tracking-widest mb-4">Support</h3>
+                    <ul class="space-y-2.5 text-xs text-gray-400">
+                        <li><a href="#" class="hover:text-teal-400 transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-teal-400 transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-teal-400 transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-teal-400 transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Follow Us -->
+                <div>
+                    <h3 class="text-white text-xs font-semibold uppercase tracking-widest mb-4">Follow Us</h3>
+                    <div class="flex items-center gap-3">
+                        <!-- Facebook -->
+                        <a href="#" id="footer-facebook"
+                           class="w-8 h-8 rounded-full flex items-center justify-center
+                                  bg-white/5 hover:bg-teal-500/20 hover:text-teal-400
+                                  text-gray-400 transition-all duration-200"
+                           aria-label="Facebook">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" id="footer-instagram"
+                           class="w-8 h-8 rounded-full flex items-center justify-center
+                                  bg-white/5 hover:bg-teal-500/20 hover:text-teal-400
+                                  text-gray-400 transition-all duration-200"
+                           aria-label="Instagram">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="4" stroke-width="2"/>
+                                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="#" id="footer-tiktok"
+                           class="w-8 h-8 rounded-full flex items-center justify-center
+                                  bg-white/5 hover:bg-teal-500/20 hover:text-teal-400
+                                  text-gray-400 transition-all duration-200"
+                           aria-label="TikTok">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         JAVASCRIPT
+    ═══════════════════════════════════════════════════════ -->
+    <script>
+        // ── Mobile menu toggle ─────────────────────────────────
+        const btnMenu   = document.getElementById('btn-mobile-menu');
+        const mobileNav = document.getElementById('mobile-menu');
+
+        if (btnMenu && mobileNav) {
+            btnMenu.addEventListener('click', () => {
+                const isOpen = mobileNav.classList.toggle('hidden');
+                btnMenu.setAttribute('aria-expanded', String(!isOpen));
+            });
+        }
+
+        // ── Navbar scroll behaviour ────────────────────────────
+        // Slightly increase opacity/blur on scroll for depth effect.
+        const nav = document.getElementById('main-nav');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                nav.style.background = 'rgba(4,13,15,0.96)';
+                nav.style.borderBottomColor = 'rgba(46,203,128,0.15)';
+            } else {
+                nav.style.background = 'rgba(4,13,15,0.85)';
+                nav.style.borderBottomColor = 'rgba(46,203,128,0.08)';
+            }
+        }, { passive: true });
+    </script>
+
+</body>
+</html>
