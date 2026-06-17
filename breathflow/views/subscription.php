@@ -49,77 +49,122 @@
 
     <?php require __DIR__ . '/../includes/navbar.php'; ?>
 
-    <main class="flex-1 px-6 lg:px-16 py-24 max-w-7xl mx-auto w-full mt-10">
+    <main class="flex-1 px-6 lg:px-16 pt-32 pb-12 max-w-7xl mx-auto w-full">
         
+        <style>
+            input[type="radio"]:checked ~ label {
+                border-color: #2ECB80;
+                background-color: rgba(46, 203, 128, 0.1);
+            }
+            input[type="radio"]:checked ~ label .radio-outer {
+                border-color: #2ECB80;
+            }
+            input[type="radio"]:checked ~ label .radio-inner {
+                opacity: 1;
+            }
+        </style>
+
         <div class="text-center mb-16 fade-in-up">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
-                ARC <span class="text-teal-500">Core Club</span>
+                Core Club Subscription
             </h1>
             <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                Never run out of your favorite sensory profiles. Join our flexible subscription tiers and save 20% on all automatic deliveries.
+                Never run out of your favorite sensations.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
-            <!-- Tier 1 -->
-            <div class="bg-white/5 border border-white/10 rounded-3xl p-8 flex flex-col backdrop-blur-sm relative">
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-white mb-2">Wellness Routine</h2>
-                    <p class="text-gray-400 text-sm">Perfect for daily baseline maintenance.</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
+            <!-- Left Card: Core Club Benefits -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 flex flex-col backdrop-blur-sm relative h-full">
+                <div class="mb-8 flex items-center gap-4 border-b border-white/10 pb-6">
+                    <div class="w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-white">Core Club Benefits</h2>
                 </div>
-                <div class="mb-8 flex items-end gap-2">
-                    <span class="text-5xl font-black text-white">$24</span>
-                    <span class="text-gray-400 font-medium mb-1">/ month</span>
-                </div>
-                <ul class="space-y-4 mb-8 flex-1">
-                    <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        2 Cartridges every month
+                <ul class="space-y-6 flex-1">
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <span class="text-gray-300 text-lg">20% OFF every delivery</span>
                     </li>
-                    <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Free Shipping
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <span class="text-gray-300 text-lg">Auto Ship - Hassle Free</span>
                     </li>
-                    <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Swap flavors anytime
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <span class="text-gray-300 text-lg">Cancel anytime</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <span class="text-gray-300 text-lg">Priority access to new flavors</span>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <span class="text-gray-300 text-lg">Exclusive member offers</span>
                     </li>
                 </ul>
-                <a href="index.php?page=subscription/join&tier=wellness" class="block w-full py-4 text-center rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition-colors">
-                    Select Routine
-                </a>
             </div>
 
-            <!-- Tier 2 -->
-            <div class="bg-gradient-to-b from-ocean-800 to-ocean-900 border border-teal-500/30 rounded-3xl p-8 flex flex-col backdrop-blur-sm relative shadow-[0_0_40px_rgba(46,203,128,0.1)]">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-teal-500 text-ocean-950 font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full">
-                    Most Popular
-                </div>
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-white mb-2">Deep Breath Tracker</h2>
-                    <p class="text-gray-400 text-sm">For the dedicated mindful breather.</p>
-                </div>
-                <div class="mb-8 flex items-end gap-2">
-                    <span class="text-5xl font-black text-white">$45</span>
-                    <span class="text-gray-400 font-medium mb-1">/ month</span>
-                </div>
-                <ul class="space-y-4 mb-8 flex-1">
-                    <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        4 Cartridges every month
-                    </li>
-                    <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Priority Free Shipping
-                    </li>
-                    <li class="flex items-center gap-3 text-gray-300 text-sm">
-                        <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Exclusive early access to new flavors
-                    </li>
-                </ul>
-                <a href="index.php?page=subscription/join&tier=deep_breath" class="block w-full py-4 text-center rounded-xl btn-teal font-bold tracking-wide">
-                    Subscribe Now
-                </a>
+            <!-- Right Card: Choose Your Plan -->
+            <div class="bg-gradient-to-b from-ocean-800 to-ocean-900 border border-teal-500/30 rounded-3xl p-8 lg:p-10 flex flex-col backdrop-blur-sm relative shadow-[0_0_40px_rgba(46,203,128,0.1)] h-full">
+                <h2 class="text-2xl lg:text-3xl font-bold text-white mb-8">Choose Your Plan</h2>
+                <form action="index.php?page=subscription/join" method="POST" class="flex flex-col flex-1">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                    
+                    <div class="space-y-4 flex-1">
+                        <!-- Radio 1 -->
+                        <div class="relative block">
+                            <input type="radio" id="plan_monthly" name="plan" value="monthly_45" class="sr-only" checked>
+                            <label for="plan_monthly" class="cursor-pointer flex items-center w-full p-5 rounded-2xl border-2 border-white/10 bg-white/5 transition-all hover:bg-white/10">
+                                <div class="radio-outer w-6 h-6 rounded-full border-2 border-gray-400 flex-shrink-0 flex items-center justify-center mr-5 relative transition-colors">
+                                    <div class="radio-inner w-3 h-3 bg-teal-500 rounded-full opacity-0 absolute transition-opacity"></div>
+                                </div>
+                                <div class="flex-1 flex items-center justify-between">
+                                    <h3 class="text-xl font-bold text-white m-0">Monthly</h3>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-black text-white m-0 leading-tight">RM45.00</p>
+                                        <p class="text-sm text-gray-400 m-0">/ month</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Radio 2 -->
+                        <div class="relative block">
+                            <input type="radio" id="plan_bimonthly" name="plan" value="bi_monthly_85" class="sr-only">
+                            <label for="plan_bimonthly" class="cursor-pointer flex items-center w-full p-5 rounded-2xl border-2 border-white/10 bg-white/5 transition-all hover:bg-white/10">
+                                <div class="radio-outer w-6 h-6 rounded-full border-2 border-gray-400 flex-shrink-0 flex items-center justify-center mr-5 relative transition-colors">
+                                    <div class="radio-inner w-3 h-3 bg-teal-500 rounded-full opacity-0 absolute transition-opacity"></div>
+                                </div>
+                                <div class="flex-1 flex items-center justify-between">
+                                    <h3 class="text-xl font-bold text-white m-0">Every 2 Months</h3>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-black text-white m-0 leading-tight">RM85.00</p>
+                                        <p class="text-sm text-gray-400 m-0">/ 2 months</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 border-t border-white/10">
+                        <button type="submit" class="w-full btn-teal py-4 px-8 rounded-xl font-bold text-lg text-center uppercase tracking-wide mb-4 shadow-lg shadow-teal-500/20">
+                            Join Core Club Now
+                        </button>
+                        <p class="text-center text-sm text-gray-400 font-medium">You can pause or cancel anytime.</p>
+                    </div>
+                </form>
             </div>
         </div>
     </main>

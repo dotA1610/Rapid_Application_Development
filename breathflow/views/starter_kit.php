@@ -100,8 +100,7 @@
             
             <div class="flex items-end gap-6 mb-10">
                 <div>
-                    <p class="text-sm text-gray-400 font-medium line-through mb-1">$85.00 Value</p>
-                    <p class="text-3xl font-black text-white">$49.99</p>
+                    <p class="text-3xl font-black text-white">RM199</p>
                 </div>
             </div>
 
