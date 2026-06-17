@@ -92,7 +92,7 @@
 
 <body class="page-bg min-h-screen text-white antialiased flex flex-col">
 
-    <?php require __DIR__ . '/header.php'; ?>
+    <?php require __DIR__ . '/../includes/navbar.php'; ?>
 
     <main class="flex-1 flex items-center justify-center px-4 py-12" id="main-content">
         <div class="auth-card w-full max-w-md rounded-3xl px-8 py-10 sm:px-10">

@@ -70,11 +70,24 @@ class ProductController
     // ──────────────────────────────────────────────────────────
 
     /**
+     * GET /admin/dashboard  — Manager/Admin dashboard.
+     */
+    public function adminDashboard(): void
+    {
+        $this->auth->requireRoles(['admin', 'manager']);
+        
+        $this->renderView('admin/dashboard', [
+            // Dummy data for now
+            'total_products' => count($this->productModel->getAll())
+        ]);
+    }
+
+    /**
      * GET /admin/products  — Full CRUD grid for admin.
      */
     public function adminIndex(): void
     {
-        $this->auth->requireAdmin();
+        $this->auth->requireRoles(['admin', 'staff']);
 
         $products = $this->productModel->getAll();
 
@@ -86,7 +99,7 @@ class ProductController
      */
     public function create(): void
     {
-        $this->auth->requireAdmin();
+        $this->auth->requireRoles(['admin', 'staff']);
 
         $this->renderView('admin/product_form', [
             'product'    => null,
@@ -99,7 +112,7 @@ class ProductController
      */
     public function store(): void
     {
-        $this->auth->requireAdmin();
+        $this->auth->requireRoles(['admin', 'staff']);
         $this->requirePost();
         $this->verifyCsrf();
 
@@ -149,7 +162,7 @@ class ProductController
      */
     public function edit(): void
     {
-        $this->auth->requireAdmin();
+        $this->auth->requireRoles(['admin', 'staff']);
 
         $id      = $this->resolveIntParam('id');
         $product = $this->productModel->getById($id);
@@ -169,7 +182,7 @@ class ProductController
      */
     public function update(): void
     {
-        $this->auth->requireAdmin();
+        $this->auth->requireRoles(['admin', 'staff']);
         $this->requirePost();
         $this->verifyCsrf();
 
@@ -227,7 +240,7 @@ class ProductController
      */
     public function destroy(): void
     {
-        $this->auth->requireAdmin();
+        $this->auth->requireRoles(['admin', 'staff']);
         $this->requirePost();
         $this->verifyCsrf();
 

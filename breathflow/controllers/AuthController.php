@@ -133,9 +133,18 @@ class AuthController
      */
     public function requireAdmin(): void
     {
+        $this->requireRoles(['admin']);
+    }
+
+    /**
+     * Enforce specific roles.
+     * Redirects users without the allowed roles to the user dashboard.
+     */
+    public function requireRoles(array $allowedRoles): void
+    {
         $this->requireLogin();
 
-        if ($_SESSION['role'] !== 'admin') {
+        if (!in_array($_SESSION['role'] ?? '', $allowedRoles, true)) {
             $this->redirect('dashboard');
         }
     }
@@ -253,8 +262,15 @@ class AuthController
             (string)$user['role']
         );
 
-        // ── 7. Role-based redirect ─────────────────────────────
-        $destination = ($user['role'] === 'admin') ? 'admin/dashboard' : 'dashboard';
+        // ── 7. Role-based redirect (FR-01) ─────────────────────────
+        $role = $user['role'];
+        if ($role === 'admin' || $role === 'manager') {
+            $destination = 'admin/dashboard';
+        } elseif ($role === 'staff') {
+            $destination = 'admin/products';
+        } else {
+            $destination = 'dashboard';
+        }
         $this->redirect($destination);
     }
 

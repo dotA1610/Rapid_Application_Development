@@ -68,7 +68,7 @@
 
 <body class="page-bg min-h-screen text-white antialiased flex flex-col">
 
-    <?php require __DIR__ . '/header.php'; ?>
+    <?php require __DIR__ . '/../includes/navbar.php'; ?>
 
     <!-- ═══════════════════════════════════════════════════════
          MAIN CONTENT

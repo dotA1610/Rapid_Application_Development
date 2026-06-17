@@ -144,7 +144,7 @@
 
 <body class="bg-ocean-950 text-white antialiased overflow-x-hidden">
 
-    <?php require __DIR__ . '/header.php'; ?>
+    <?php require __DIR__ . '/../includes/navbar.php'; ?>
     <!-- ═══════════════════════════════════════════════════════
          HERO SECTION
     ═══════════════════════════════════════════════════════ -->

@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `fullname`   VARCHAR(120)     NOT NULL,
     `email`      VARCHAR(180)     NOT NULL,
     `password`   VARCHAR(255)     NOT NULL COMMENT 'bcrypt hash',
-    `role`       ENUM('customer','admin') NOT NULL DEFAULT 'customer',
+    `role`       ENUM('admin','staff','manager','customer') NOT NULL DEFAULT 'customer',
     `created_at` TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (`user_id`),
