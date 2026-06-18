@@ -75,10 +75,21 @@ class ProductController
     public function adminDashboard(): void
     {
         $this->auth->requireRoles(['admin', 'manager']);
-        
+
+        $db = Database::getInstance();
+
+        $totalProducts = count($this->productModel->getAll());
+
+        $stmtSubs = $db->query("SELECT COUNT(*) FROM subscriptions WHERE status = 'active'");
+        $activeSubs = (int) $stmtSubs->fetchColumn();
+
+        $stmtUsers = $db->query("SELECT COUNT(*) FROM users");
+        $totalUsers = (int) $stmtUsers->fetchColumn();
+
         $this->renderView('admin/dashboard', [
-            // Dummy data for now
-            'total_products' => count($this->productModel->getAll())
+            'total_products' => $totalProducts,
+            'active_subs'    => $activeSubs,
+            'total_users'    => $totalUsers,
         ]);
     }
 
@@ -388,7 +399,11 @@ class ProductController
     private function renderView(string $view, array $data = []): void
     {
         extract($data, EXTR_SKIP);
-        $viewPath = __DIR__ . '/../views/' . basename($view) . '.php';
+
+        // Strip traversal characters but preserve allowed sub-directory structure
+        // e.g. 'admin/dashboard' → views/admin/dashboard.php
+        $safe     = str_replace(['..', '\\', "\0"], '', $view);
+        $viewPath = __DIR__ . '/../views/' . $safe . '.php';
 
         if (!file_exists($viewPath)) {
             $this->abort404("View '{$view}' not found.");

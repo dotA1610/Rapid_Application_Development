@@ -86,7 +86,7 @@ if (!function_exists('mobileNavClass')) {
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
         <!-- Logo -->
-        <a href="index.php?page=home" id="nav-logo" class="flex items-center gap-2.5 group" aria-label="ARC Home">
+        <a href="index.php?page=home" id="nav-logo" class="flex items-center gap-2.5 group mr-8" aria-label="ARC Home">
             <div class="w-8 h-8 rounded-full bg-teal-500 flex items-center justify-center
                         group-hover:bg-teal-400 transition-colors duration-200">
                 <span class="text-ocean-950 font-black text-xs tracking-wider">A</span>
@@ -97,49 +97,53 @@ if (!function_exists('mobileNavClass')) {
         </a>
 
         <!-- ── Desktop Nav Links ──────────────────────────────── -->
-        <ul class="hidden md:flex items-center gap-7 text-sm font-medium">
+        <div class="hidden md:flex items-center gap-2 text-sm font-medium">
 
-            <!-- Public links — visible to everyone -->
-            <li><a href="index.php?page=home"           class="<?= navClass('home', $activePage) ?>">Home</a></li>
-            <li><a href="index.php?page=science"        class="<?= navClass('science', $activePage) ?>">Science</a></li>
-            <li><a href="index.php?page=device"         class="<?= navClass('device', $activePage) ?>">Device</a></li>
-            <li><a href="index.php?page=profiles"       class="<?= navClass('profiles', $activePage) ?>">Sensory Profiles</a></li>
-            <li><a href="index.php?page=starter_kit"    class="<?= navClass('starter_kit', $activePage) ?>">Starter Kit</a></li>
-            <li><a href="index.php?page=bundle_builder" class="<?= navClass('bundle_builder', $activePage) ?>">Build Your Bundle</a></li>
-            <li><a href="index.php?page=subscription"   class="<?= navClass('subscription', $activePage) ?>">Subscription</a></li>
+            <!-- PUBLIC LINKS GROUP -->
+            <ul class="flex items-center gap-5">
+                <li><a href="index.php?page=home"           class="<?= navClass('home', $activePage) ?>">Home</a></li>
+                <li><a href="index.php?page=science"        class="<?= navClass('science', $activePage) ?>">Science</a></li>
+                <li><a href="index.php?page=device"         class="<?= navClass('device', $activePage) ?>">Device</a></li>
+                <li><a href="index.php?page=profiles"       class="<?= navClass('profiles', $activePage) ?>">Sensory Profiles</a></li>
+                <li><a href="index.php?page=starter_kit"    class="<?= navClass('starter_kit', $activePage) ?>">Starter Kit</a></li>
+                <li><a href="index.php?page=bundle_builder" class="<?= navClass('bundle_builder', $activePage) ?>">Build Your Bundle</a></li>
+                <li><a href="index.php?page=subscription"   class="<?= navClass('subscription', $activePage) ?>">Subscription</a></li>
+            </ul>
 
             <?php if ($canViewDashboard || $canManageProducts || $canManageSubs): ?>
-            <!-- ── Back-office links (FR-01 RBAC) ──────────────── -->
-            <li class="border-l border-white/10 pl-6 ml-2 text-gray-500 text-xs tracking-widest uppercase font-bold">
-                Internal
-            </li>
+            <!-- INTERNAL ADMIN GROUP — visually separated -->
+            <div class="flex items-center gap-4 border-l border-gray-700 pl-5 ml-3">
+                <span class="text-gray-500 text-[10px] tracking-widest uppercase font-bold select-none">Internal</span>
 
-            <?php if ($canViewDashboard): ?>
-            <li>
-                <a href="index.php?page=admin/dashboard" class="<?= navClass('admin/dashboard', $activePage) ?>">
-                    Dashboard
-                </a>
-            </li>
+                <ul class="flex items-center gap-4">
+                    <?php if ($canViewDashboard): ?>
+                    <li>
+                        <a href="index.php?page=admin/dashboard" class="<?= navClass('admin/dashboard', $activePage) ?>">
+                            Dashboard
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
+                    <?php if ($canManageProducts): ?>
+                    <li>
+                        <a href="index.php?page=admin/products" class="<?= navClass('admin/products', $activePage) ?>">
+                            Manage Products
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
+                    <?php if ($canManageSubs): ?>
+                    <li>
+                        <a href="index.php?page=admin/subscriptions" class="<?= navClass('admin/subscriptions', $activePage) ?>">
+                            Manage Subs
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
             <?php endif; ?>
 
-            <?php if ($canManageProducts): ?>
-            <li>
-                <a href="index.php?page=admin/products" class="<?= navClass('admin/products', $activePage) ?>">
-                    Manage Products
-                </a>
-            </li>
-            <?php endif; ?>
-
-            <?php if ($canManageSubs): ?>
-            <li>
-                <a href="index.php?page=admin/subscriptions" class="<?= navClass('admin/subscriptions', $activePage) ?>">
-                    Manage Subs
-                </a>
-            </li>
-            <?php endif; ?>
-            <?php endif; ?>
-
-        </ul>
+        </div>
 
         <!-- ── Nav Action Icons ───────────────────────────────── -->
         <div class="flex items-center gap-3">

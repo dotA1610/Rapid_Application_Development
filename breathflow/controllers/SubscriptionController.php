@@ -243,7 +243,11 @@ class SubscriptionController
     private function renderView(string $view, array $data = []): void
     {
         extract($data, EXTR_SKIP);
-        $viewPath = __DIR__ . '/../views/' . basename($view) . '.php';
+
+        // Preserve sub-directory structure (e.g. 'admin/subscriptions')
+        // while stripping traversal characters for safety.
+        $safe     = str_replace(['..', '\\', "\0"], '', $view);
+        $viewPath = __DIR__ . '/../views/' . $safe . '.php';
 
         if (!file_exists($viewPath)) {
             http_response_code(404);
