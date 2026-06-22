@@ -58,13 +58,9 @@
         <!-- Left: Image / Showcase -->
         <div class="w-full lg:w-1/2 flex justify-center fade-in-up">
             <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm shadow-2xl">
-                <!-- Device Mockup Placeholder -->
+                <!-- Device Mockup Image -->
                 <div class="w-3/4 h-3/4 bg-gradient-to-tr from-ocean-800 to-ocean-600 rounded-2xl flex flex-col items-center justify-center shadow-inner relative overflow-hidden border border-white/5">
-                     <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-teal-400 via-transparent to-transparent mix-blend-screen"></div>
-                     <svg class="w-24 h-24 text-teal-500/80 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                     </svg>
-                     <span class="text-white/80 font-bold tracking-widest text-sm uppercase">ARC NEBU-PEN</span>
+                     <img src="assets/images/products/arc_starter_kit.jpg" class="w-full h-full object-cover mix-blend-screen opacity-80" alt="ARC Starter Kit">
                 </div>
             </div>
         </div>

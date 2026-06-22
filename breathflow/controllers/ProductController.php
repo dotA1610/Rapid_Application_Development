@@ -102,7 +102,7 @@ class ProductController
 
         $products = $this->productModel->getAll();
 
-        $this->renderView('admin/products', ['products' => $products]);
+        $this->renderView('admin/manage_products', ['products' => $products]);
     }
 
     /**

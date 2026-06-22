@@ -162,7 +162,6 @@ $mySub = $subModel->getByUser($userId);
             <div class="glass-panel rounded-3xl p-8 flex flex-col">
                 <div class="flex items-center justify-between mb-8">
                     <h2 class="text-xl font-bold text-white">My Bundle</h2>
-                    <a href="index.php?page=bundle_builder" class="text-sm font-semibold text-teal-400 hover:text-teal-300">Edit Bundle</a>
                 </div>
                 
                 <div class="mb-2">

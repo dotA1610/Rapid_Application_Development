@@ -231,40 +231,13 @@
                                  class="w-56 lg:w-72 xl:w-80 h-auto object-contain drop-shadow-2xl"
                                  width="320" height="480" />
                         -->
-                        <!-- Device Placeholder -->
+                        <!-- Device Image -->
                         <div class="relative w-52 lg:w-64 xl:w-72 mx-auto">
                             <!-- Glow behind device -->
                             <div class="absolute inset-0 rounded-full blur-3xl opacity-20"
                                  style="background: radial-gradient(circle, #2ECB80 0%, transparent 70%);
                                         transform: scale(1.2);"></div>
-
-                            <!-- Device silhouette placeholder -->
-                            <div class="relative mx-auto rounded-[2.5rem] flex flex-col items-center justify-between py-6 px-4 shadow-2xl"
-                                 style="width: 80px; height: 280px;
-                                        background: linear-gradient(180deg, #2a3a40 0%, #1a2830 40%, #111e24 100%);
-                                        border: 1px solid rgba(46,203,128,0.2);">
-                                <!-- Dome cap -->
-                                <div class="w-10 h-10 rounded-full border border-white/20"
-                                     style="background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(200,230,225,0.1) 100%);
-                                            backdrop-filter: blur(4px);"></div>
-                                <!-- Body bands -->
-                                <div class="w-full space-y-2">
-                                    <div class="h-0.5 w-full bg-white/10 rounded"></div>
-                                    <div class="h-12 w-full rounded-xl"
-                                         style="background: linear-gradient(135deg, #1a4a3a 0%, #0f3028 100%);
-                                                border: 1px solid rgba(46,203,128,0.15);"></div>
-                                    <div class="h-0.5 w-full bg-white/10 rounded"></div>
-                                </div>
-                                <!-- Base -->
-                                <div class="w-12 h-8 rounded-xl"
-                                     style="background: linear-gradient(180deg, #0f2028 0%, #071419 100%);
-                                            border: 1px solid rgba(46,203,128,0.2);"></div>
-                            </div>
-
-                            <!-- ARC label -->
-                            <p class="text-center text-xs text-teal-500/60 mt-4 tracking-[0.2em] uppercase font-medium">
-                                ARC NEBU-PEN
-                            </p>
+                            <img src="assets/images/nebu_pen.png" alt="ARC Nebu-Pen" class="img-fluid mx-auto d-block hero-product-image relative z-10 w-full" style="max-height: 500px; object-fit: contain; mix-blend-mode: screen;">
                         </div>
                     </div>
                 </div>

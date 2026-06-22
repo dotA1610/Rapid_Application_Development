@@ -310,13 +310,13 @@
                             break;
                         }
                     }
-                }
-                
-                podEl.className = `w-16 h-48 rounded-full border border-teal-500/20 bg-gradient-to-b ${style.bgClass} to-transparent flex items-center justify-center shadow-[0_0_30px_rgba(46,203,128,0.1)] transition-colors duration-300`;
-                const textSpan = podEl.querySelector('span');
-                if (textSpan) {
-                    textSpan.className = `text-xs font-bold ${style.textClass} -rotate-90 whitespace-nowrap`;
-                    textSpan.textContent = style.label;
+                    
+                    const imageName = name.toLowerCase().replace(/ /g, '_') + '.jpg';
+                    podEl.className = `w-16 h-48 rounded-full border border-teal-500/20 bg-gradient-to-b ${style.bgClass} to-transparent flex items-center justify-center shadow-[0_0_30px_rgba(46,203,128,0.1)] transition-colors duration-300 relative overflow-hidden`;
+                    podEl.innerHTML = `<img src="assets/images/products/${imageName}" onerror="this.src='assets/images/products/placeholder.jpg'" class="w-full h-full object-cover mix-blend-screen opacity-80" alt="${name}">`;
+                } else {
+                    podEl.className = `w-16 h-48 rounded-full border border-teal-500/20 bg-gradient-to-b ${style.bgClass} to-transparent flex items-center justify-center shadow-[0_0_30px_rgba(46,203,128,0.1)] transition-colors duration-300`;
+                    podEl.innerHTML = `<span class="text-xs font-bold ${style.textClass} -rotate-90 whitespace-nowrap">${style.label}</span>`;
                 }
             }
 

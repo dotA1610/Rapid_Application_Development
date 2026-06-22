@@ -140,20 +140,11 @@ $defaultAccent = ['from' => 'from-teal-900/40', 'to' => 'to-teal-800/20', 'text'
                      data-product-id="<?= (int) $product['product_id'] ?>">
 
                     <!-- Card Image Area -->
-                    <div class="h-48 w-full bg-gradient-to-br <?= $accent['from'] ?> <?= $accent['to'] ?> relative flex items-center justify-center">
-                        <?php if (!empty($image) && file_exists(__DIR__ . '/../' . $image)): ?>
-                            <img src="<?= htmlspecialchars($image) ?>"
-                                 alt="<?= $name ?> cartridge"
-                                 class="w-full h-full object-cover" />
-                        <?php else: ?>
-                            <svg class="w-12 h-12 <?= $accent['text'] ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                      d="<?= $accent['icon'] ?>" />
-                            </svg>
-                            <span class="absolute bottom-4 right-4 text-xs font-bold tracking-widest <?= $accent['text'] ?> uppercase">
-                                <?= $name ?>.png
-                            </span>
-                        <?php endif; ?>
+                    <div class="h-48 w-full bg-gradient-to-br <?= $accent['from'] ?> <?= $accent['to'] ?> relative flex items-center justify-center overflow-hidden">
+                        <?php 
+                        $imageName = strtolower(str_replace(' ', '_', $name)) . '.jpg';
+                        ?>
+                        <img src="assets/images/products/<?= $imageName ?>" class="w-full h-full object-cover mix-blend-screen opacity-80" alt="<?= $name ?> cartridge">
                     </div>
 
                     <!-- Card Body -->
