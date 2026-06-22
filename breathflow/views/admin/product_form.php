@@ -356,5 +356,3 @@ $presets = ['Mint', 'Berry', 'Citrus', 'Lavender'];
             }
         });
     </script>
-</body>
-</html>

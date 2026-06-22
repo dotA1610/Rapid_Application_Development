@@ -62,9 +62,9 @@ class AuthController
      */
     public function login(): void
     {
-        // Already logged in — bounce to dashboard.
+        // Already logged in — bounce to the correct workspace for their role.
         if ($this->isLoggedIn()) {
-            $this->redirect('dashboard');
+            $this->redirect($this->destinationForRole($_SESSION['role'] ?? 'customer'));
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -145,7 +145,8 @@ class AuthController
         $this->requireLogin();
 
         if (!in_array($_SESSION['role'] ?? '', $allowedRoles, true)) {
-            $this->redirect('dashboard');
+            // Redirect to appropriate workspace, not always customer dashboard.
+            $this->redirect($this->destinationForRole($_SESSION['role'] ?? 'customer'));
         }
     }
 
@@ -263,15 +264,7 @@ class AuthController
         );
 
         // ── 7. Role-based redirect (FR-01) ─────────────────────────
-        $role = $user['role'];
-        if ($role === 'admin' || $role === 'manager') {
-            $destination = 'admin/dashboard';
-        } elseif ($role === 'staff') {
-            $destination = 'admin/products';
-        } else {
-            $destination = 'dashboard';
-        }
-        $this->redirect($destination);
+        $this->redirect($this->destinationForRole($user['role']));
     }
 
     // ──────────────────────────────────────────────────────────
@@ -407,14 +400,31 @@ class AuthController
 
     /**
      * Send an internal redirect and halt execution.
+     * Preserves subdirectory paths (e.g. 'admin/dashboard') while
+     * stripping traversal characters so users cannot escape views/.
      *
      * @param string $path  Relative path, e.g. 'dashboard' or 'admin/dashboard'.
      */
     private function redirect(string $path): never
     {
-        // Strip leading slash to keep URLs consistent.
-        $safe = ltrim(basename($path), '/');
+        // Strip traversal characters but keep subdirectory structure intact.
+        $safe = str_replace(['..', '\\', "\0"], '', ltrim($path, '/'));
         header('Location: index.php?page=' . urlencode($safe));
         exit();
+    }
+
+    /**
+     * Return the correct post-login destination for a given role.
+     *
+     * @param string $role  The authenticated user's role string.
+     * @return string       Route key matching a registered index.php route.
+     */
+    private function destinationForRole(string $role): string
+    {
+        return match ($role) {
+            'admin', 'manager' => 'admin/dashboard',
+            'staff'            => 'admin/products',
+            default            => 'dashboard',
+        };
     }
 }

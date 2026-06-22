@@ -1,4 +1,18 @@
 <?php
+declare(strict_types=1);
+
+// ── Safe global session initialisation ───────────────────────
+if (session_status() === PHP_SESSION_NONE) {
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path'     => '/',
+        'domain'   => '',
+        'secure'   => isset($_SERVER['HTTPS']),
+        'httponly' => true,
+        'samesite' => 'Strict',
+    ]);
+    session_start();
+}
 
 /**
  * ARC NEBU-PEN  |  Front Controller — index.php
@@ -31,7 +45,6 @@
  * ─────────────────────────────────────────────────────────────
  */
 
-declare(strict_types=1);
 
 // ── Autoload controllers & models ─────────────────────────────
 require_once __DIR__ . '/config/database.php';
@@ -39,6 +52,7 @@ require_once __DIR__ . '/controllers/AuthController.php';
 require_once __DIR__ . '/controllers/ProductController.php';
 require_once __DIR__ . '/controllers/BundleController.php';
 require_once __DIR__ . '/controllers/SubscriptionController.php';
+require_once __DIR__ . '/controllers/CartController.php';
 
 // ── Determine current page ─────────────────────────────────────
 $page = trim($_GET['page'] ?? 'home');
@@ -76,6 +90,15 @@ $routes = [
     // ── Customer Dashboard ────────────────────────────────────
     'dashboard'              => [null, 'dashboard'],    // handled below with auth check
 
+    // ── Cart & Checkout ───────────────────────────────────────
+    'cart'                   => ['CartController',       'showCart'],
+    'cart/add'               => ['CartController',       'add'],
+    'cart/remove'            => ['CartController',       'remove'],
+    'cart/clear'             => ['CartController',       'clear'],
+    'checkout'               => ['CartController',       'view'],
+    'checkout/process'       => ['CartController',       'process'],
+    'order_success'          => [null, 'order_success'],
+
     // ── Admin ─────────────────────────────────────────────────
     'admin/dashboard'        => ['ProductController',      'adminDashboard'],   // placeholder
     'admin/products'         => ['ProductController',      'adminIndex'],
@@ -92,6 +115,7 @@ $routes = [
 if (!array_key_exists($page, $routes)) {
     http_response_code(404);
     renderStaticView('404');
+    require_once __DIR__ . '/includes/footer.php';
     exit();
 }
 
@@ -105,6 +129,7 @@ if ($controllerClass === null) {
         $auth->requireLogin();
     }
     renderStaticView($method);
+    require_once __DIR__ . '/includes/footer.php';
     exit();
 }
 
@@ -114,10 +139,12 @@ $controller = new $controllerClass();
 if (!method_exists($controller, $method)) {
     http_response_code(404);
     renderStaticView('404');
+    require_once __DIR__ . '/includes/footer.php';
     exit();
 }
 
 $controller->$method();
+require_once __DIR__ . '/includes/footer.php';
 
 
 // ── Helpers ───────────────────────────────────────────────────

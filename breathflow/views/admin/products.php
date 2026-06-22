@@ -164,5 +164,3 @@ $products = $products ?? [];
         </div>
 
     </main>
-</body>
-</html>

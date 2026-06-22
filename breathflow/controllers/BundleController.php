@@ -123,7 +123,33 @@ class BundleController
             $total
         );
 
-        $this->redirect('dashboard');
+        // Add the bundle to cart and go to checkout
+        $bundle = $this->bundleModel->getByUser($userId);
+        if ($bundle) {
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = [];
+            }
+            // Remove any existing bundle from cart
+            $_SESSION['cart'] = array_values(array_filter(
+                $_SESSION['cart'],
+                fn($i) => $i['type'] !== 'bundle'
+            ));
+            $_SESSION['cart'][] = [
+                'name'  => 'Custom 3-Pod Bundle',
+                'type'  => 'bundle',
+                'price' => (float) $bundle['total_price'],
+                'qty'   => 1,
+                'meta'  => [
+                    'flavor1' => $bundle['flavor1_name'],
+                    'flavor2' => $bundle['flavor2_name'],
+                    'flavor3' => $bundle['flavor3_name'],
+                ],
+            ];
+        }
+
+        $_SESSION['toast_msg'] = "Item added to cart successfully!";
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 
     // ──────────────────────────────────────────────────────────

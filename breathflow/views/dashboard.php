@@ -165,6 +165,13 @@ $mySub = $subModel->getByUser($userId);
                     <a href="index.php?page=bundle_builder" class="text-sm font-semibold text-teal-400 hover:text-teal-300">Edit Bundle</a>
                 </div>
                 
+                <div class="mb-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-bold tracking-wide uppercase">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Order Status: Processing Shipment
+                    </span>
+                </div>
+
                 <!-- Display saved bundle cartridges -->
                 <div class="flex items-center justify-center gap-6 flex-1 py-4">
                     <!-- Pod 1 -->
@@ -223,7 +230,8 @@ $mySub = $subModel->getByUser($userId);
                 
                 <div class="glass-sub-panel p-6 mb-8 flex-1">
                     <h3 class="text-lg font-bold text-white mb-1">Core Club (<?= htmlspecialchars(ucfirst($mySub['plan'])) ?>)</h3>
-                    <p class="text-teal-400 text-sm font-semibold mb-6"><?= htmlspecialchars((string)($mySub['discount'] ?? 20)) ?>% Discount Applied</p>
+                    <?php $subPrice = ($mySub['plan'] === 'bimonthly') ? 'RM85.00' : 'RM45.00'; ?>
+                    <p class="text-teal-400 text-sm font-semibold mb-6"><?= htmlspecialchars((string)($mySub['discount'] ?? 20)) ?>% Discount Applied &middot; <?= $subPrice ?></p>
                     
                     <div class="space-y-4">
                         <div>
@@ -285,6 +293,3 @@ $mySub = $subModel->getByUser($userId);
         <?php endif; ?>
 
     </main>
-</body>
-</html>
-

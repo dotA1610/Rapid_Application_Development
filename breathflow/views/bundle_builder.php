@@ -145,10 +145,11 @@
                 function renderOptions($products, $selectedId) {
                     $html = '<option value="">-- Select Cartridge --</option>';
                     foreach ($products as $p) {
-                        $sel = ($p['id'] == $selectedId) ? 'selected' : '';
+                        $pid = $p['product_id'];
+                        $sel = ($pid == $selectedId) ? 'selected' : '';
                         // We store JSON containing id, name, and price so JS can parse it
                         $val = htmlspecialchars(json_encode([
-                            'id' => $p['id'],
+                            'id' => $pid,
                             'name' => $p['name'],
                             'price' => (float)$p['price']
                         ]));
@@ -358,5 +359,3 @@
             updateSummary();
         });
     </script>
-</body>
-</html>

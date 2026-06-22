@@ -119,8 +119,9 @@
             <!-- Right Card: Choose Your Plan -->
             <div class="bg-gradient-to-b from-ocean-800 to-ocean-900 border border-teal-500/30 rounded-3xl p-8 lg:p-10 flex flex-col backdrop-blur-sm relative shadow-[0_0_40px_rgba(46,203,128,0.1)] h-full">
                 <h2 class="text-2xl lg:text-3xl font-bold text-white mb-8">Choose Your Plan</h2>
-                <form action="index.php?page=subscription/join" method="POST" class="flex flex-col flex-1">
+                <form action="index.php?page=cart/add" method="POST" class="flex flex-col flex-1">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                    <input type="hidden" name="item_type" value="subscription">
                     
                     <div class="space-y-4 flex-1">
                         <!-- Radio 1 -->
@@ -169,5 +170,3 @@
         </div>
     </main>
 
-</body>
-</html>

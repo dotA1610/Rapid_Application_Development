@@ -199,24 +199,4 @@ $defaultAccent = ['from' => 'from-teal-900/40', 'to' => 'to-teal-800/20', 'text'
         </div>
     </main>
 
-    <!-- ═══════════════════════════════════════════════════════
-         FOOTER
-    ═══════════════════════════════════════════════════════ -->
-    <footer class="border-t border-white/5" style="background: linear-gradient(180deg, #071419 0%, #040D0F 100%);">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-10">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center">
-                        <span class="text-ocean-950 font-black text-[10px]">A</span>
-                    </div>
-                    <span class="font-bold text-sm text-white">ARC</span>
-                </div>
-                <p class="text-gray-500 text-xs">
-                    &copy; <?= date('Y') ?> ARC NEBU-PEN. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
 
-</body>
-</html>

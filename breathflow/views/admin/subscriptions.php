@@ -155,5 +155,3 @@ $csrf_token    = $csrf_token    ?? ($_SESSION['csrf_token'] ?? '');
         </div>
 
     </main>
-</body>
-</html>

@@ -105,9 +105,13 @@
             </div>
 
             <div class="w-full max-w-md flex flex-col sm:flex-row gap-4">
-                <a href="index.php?page=bundle_builder" class="flex-1 btn-teal py-4 px-8 rounded-xl font-bold text-center uppercase tracking-wide">
-                    Add to Cart
-                </a>
+                <form action="index.php?page=cart/add" method="POST" class="flex-1">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                    <input type="hidden" name="item_type" value="kit">
+                    <button type="submit" class="w-full btn-teal py-4 px-8 rounded-xl font-bold text-center uppercase tracking-wide">
+                        Add to Cart
+                    </button>
+                </form>
                 <a href="index.php?page=science" class="flex-1 bg-white/5 border border-white/10 hover:bg-white/10 py-4 px-8 rounded-xl font-bold text-center text-white transition-colors">
                     Learn More
                 </a>
@@ -115,5 +119,3 @@
         </div>
     </main>
 
-</body>
-</html>

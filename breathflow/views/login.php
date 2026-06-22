@@ -241,5 +241,3 @@
             switchTab('login');
         }
     </script>
-</body>
-</html>

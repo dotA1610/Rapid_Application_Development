@@ -124,21 +124,7 @@ if (!function_exists('mobileNavClass')) {
                     </li>
                     <?php endif; ?>
 
-                    <?php if ($canManageProducts): ?>
-                    <li>
-                        <a href="index.php?page=admin/products" class="<?= navClass('admin/products', $activePage) ?>">
-                            Manage Products
-                        </a>
-                    </li>
-                    <?php endif; ?>
 
-                    <?php if ($canManageSubs): ?>
-                    <li>
-                        <a href="index.php?page=admin/subscriptions" class="<?= navClass('admin/subscriptions', $activePage) ?>">
-                            Manage Subs
-                        </a>
-                    </li>
-                    <?php endif; ?>
                 </ul>
             </div>
             <?php endif; ?>
@@ -188,8 +174,8 @@ if (!function_exists('mobileNavClass')) {
             <?php endif; ?>
 
             <!-- Cart icon -->
-            <a href="index.php?page=bundle_builder" id="nav-cart"
-               class="text-gray-400 hover:text-teal-400 transition-colors duration-200 p-2 rounded-full hover:bg-white/5 <?= ($activePage === 'bundle_builder') ? 'text-teal-400' : '' ?>"
+            <a href="index.php?page=cart" id="nav-cart"
+               class="text-gray-400 hover:text-teal-400 transition-colors duration-200 p-2 rounded-full hover:bg-white/5 <?= ($activePage === 'cart') ? 'text-teal-400' : '' ?>"
                aria-label="Cart">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -230,12 +216,7 @@ if (!function_exists('mobileNavClass')) {
             <?php if ($canViewDashboard): ?>
             <li><a href="index.php?page=admin/dashboard"     class="<?= mobileNavClass('admin/dashboard', $activePage) ?>">⚙ Dashboard</a></li>
             <?php endif; ?>
-            <?php if ($canManageProducts): ?>
-            <li><a href="index.php?page=admin/products"      class="<?= mobileNavClass('admin/products', $activePage) ?>">📦 Manage Products</a></li>
-            <?php endif; ?>
-            <?php if ($canManageSubs): ?>
-            <li><a href="index.php?page=admin/subscriptions" class="<?= mobileNavClass('admin/subscriptions', $activePage) ?>">🔄 Manage Subscriptions</a></li>
-            <?php endif; ?>
+
             <?php endif; ?>
 
             <!-- Auth section -->
@@ -256,3 +237,37 @@ if (!function_exists('mobileNavClass')) {
         </ul>
     </div>
 </nav>
+
+<!-- ── Global Toast Notification ────────────────────────────── -->
+<?php if (isset($_SESSION['toast_msg'])): ?>
+    <div id="global-toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-teal-500/90 backdrop-blur-md text-ocean-950 font-bold px-6 py-3 rounded-xl shadow-[0_8px_32px_rgba(46,203,128,0.3)] flex items-center gap-3 transition-opacity duration-300 pointer-events-none fade-in-down">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <?= htmlspecialchars($_SESSION['toast_msg']) ?>
+    </div>
+    
+    <style>
+        .fade-in-down {
+            animation: fadeInDown 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translate(-50%, -20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('global-toast');
+            if (toast) {
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300); // Wait for transition
+                }, 3000); // Disappear after 3 seconds
+            }
+        });
+    </script>
+
+    <?php unset($_SESSION['toast_msg']); ?>
+<?php endif; ?>
